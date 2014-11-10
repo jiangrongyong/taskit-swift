@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EC281171A0F29E800BFA215 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC281161A0F29E800BFA215 /* TaskCell.swift */; };
+		1EC281191A109ECA00BFA215 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC281181A109ECA00BFA215 /* TaskModel.swift */; };
+		1EC2811D1A10A5F300BFA215 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2811C1A10A5F300BFA215 /* TaskDetailViewController.swift */; };
+		1EC2811F1A10AE1C00BFA215 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC2811E1A10AE1C00BFA215 /* Date.swift */; };
+		1EC281231A10B9DB00BFA215 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC281221A10B9DB00BFA215 /* AddTaskViewController.swift */; };
 		1EC395391A0DB0BA0035C34F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC395381A0DB0BA0035C34F /* AppDelegate.swift */; };
 		1EC3953B1A0DB0BA0035C34F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC3953A1A0DB0BA0035C34F /* ViewController.swift */; };
 		1EC3953E1A0DB0BA0035C34F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC3953C1A0DB0BA0035C34F /* Main.storyboard */; };
@@ -26,6 +31,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EC281161A0F29E800BFA215 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		1EC281181A109ECA00BFA215 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		1EC2811C1A10A5F300BFA215 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		1EC2811E1A10AE1C00BFA215 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		1EC281221A10B9DB00BFA215 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTaskViewController.swift; path = ../AddTaskViewController.swift; sourceTree = "<group>"; };
 		1EC395331A0DB0BA0035C34F /* TaskIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC395371A0DB0BA0035C34F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EC395381A0DB0BA0035C34F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,10 +89,15 @@
 			children = (
 				1EC395381A0DB0BA0035C34F /* AppDelegate.swift */,
 				1EC3953A1A0DB0BA0035C34F /* ViewController.swift */,
+				1EC281221A10B9DB00BFA215 /* AddTaskViewController.swift */,
+				1EC281161A0F29E800BFA215 /* TaskCell.swift */,
 				1EC3953C1A0DB0BA0035C34F /* Main.storyboard */,
 				1EC3953F1A0DB0BA0035C34F /* Images.xcassets */,
 				1EC395411A0DB0BA0035C34F /* LaunchScreen.xib */,
 				1EC395361A0DB0BA0035C34F /* Supporting Files */,
+				1EC281181A109ECA00BFA215 /* TaskModel.swift */,
+				1EC2811E1A10AE1C00BFA215 /* Date.swift */,
+				1EC2811C1A10A5F300BFA215 /* TaskDetailViewController.swift */,
 			);
 			path = TaskIt;
 			sourceTree = "<group>";
@@ -213,7 +228,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EC3953B1A0DB0BA0035C34F /* ViewController.swift in Sources */,
+				1EC2811F1A10AE1C00BFA215 /* Date.swift in Sources */,
+				1EC281171A0F29E800BFA215 /* TaskCell.swift in Sources */,
+				1EC281191A109ECA00BFA215 /* TaskModel.swift in Sources */,
 				1EC395391A0DB0BA0035C34F /* AppDelegate.swift in Sources */,
+				1EC2811D1A10A5F300BFA215 /* TaskDetailViewController.swift in Sources */,
+				1EC281231A10B9DB00BFA215 /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +427,7 @@
 				1EC395541A0DB0BA0035C34F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1EC395551A0DB0BA0035C34F /* Build configuration list for PBXNativeTarget "TaskItTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +436,7 @@
 				1EC395571A0DB0BA0035C34F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
