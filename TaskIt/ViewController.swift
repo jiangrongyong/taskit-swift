@@ -40,6 +40,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.reloadData()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,6 +60,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let thisTask = taskArray[indexPath!.row]
             
             detailVC.detailTaskModel = thisTask
+            detailVC.mainVC = self
+        } else if segue.identifier == "showTaskAdd" {
+            let addTaskVC: AddTaskViewController = segue.destinationViewController as AddTaskViewController
+            addTaskVC.mainVC = self
         }
     }
     
