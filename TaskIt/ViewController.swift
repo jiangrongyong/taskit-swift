@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var taskArray: [TaskModel] = []
+    var baseArray: [[TaskModel]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,28 +21,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let task1 = TaskModel(
             task: "Study French",
             subTask: "Verbs",
-            date: Date.from(year: 2014, month: 1, day: 14)
+            date: Date.from(year: 2014, month: 1, day: 14),
+            completed: false
         )
         
         let task2 = TaskModel(
             task: "Eat Dinner",
             subTask: "Burgers",
-            date: Date.from(year: 2014, month: 1, day: 14)
+            date: Date.from(year: 2014, month: 1, day: 14),
+            completed: false
         )
         
         let task3 = TaskModel(
             task: "Gym",
             subTask: "Leg day",
-            date: Date.from(year: 2014, month: 1, day: 14)
+            date: Date.from(year: 2014, month: 1, day: 14),
+            completed: false
         )
 
-        taskArray = [task1, task2, task3]
+        let taskArray = [task1, task2, task3]
+        
+        var completedArray = [
+            TaskModel(task: "Code", subTask: "Task Project", date: Date.from(year: 2014, month: 1, day: 14), completed: true)
+        ]
+        
+        baseArray = [taskArray, completedArray]
         
         tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        baseArray[0] = baseArray[0].sorted {
+            (taskOne: TaskModel, taskTwo: TaskModel) -> Bool in
+                return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
+        }
         
         tableView.reloadData()
     }
@@ -57,7 +71,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "showTaskDetail" {
             let detailVC: TaskDetailViewController = segue.destinationViewController as TaskDetailViewController
             let indexPath = self.tableView.indexPathForSelectedRow()
-            let thisTask = taskArray[indexPath!.row]
+            let thisTask = baseArray[indexPath!.section][indexPath!.row]
             
             detailVC.detailTaskModel = thisTask
             detailVC.mainVC = self
@@ -73,13 +87,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // UITableViewDataSource
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return baseArray.count
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskArray.count
+        return baseArray[section].count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let thisTask = taskArray[indexPath.row]
+        let thisTask = baseArray[indexPath.section][indexPath.row]
         
         var cell: TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
         
@@ -98,6 +116,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         performSegueWithIdentifier("showTaskDetail", sender: self)
         
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "To do"
+        } else {
+            return "Completed"
+        }
+    }
+    
+    // Helpers
+    
+    func sortByDate(taskOne: TaskModel, taskTwo: TaskModel) -> Bool {
+        return taskOne.date.timeIntervalSince1970 < taskTwo.date.timeIntervalSince1970
     }
 
 

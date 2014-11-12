@@ -193,7 +193,11 @@
                                 <action selector="cancelButtonTapped:" destination="jBb-Bz-LTF" id="XNR-ZD-xhP"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="2bg-H5-fW9"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="2bg-H5-fW9">
+                            <connections>
+                                <action selector="doneBarButtonItemPressed:" destination="jBb-Bz-LTF" id="gSS-yY-NHd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dueDatePicker" destination="bSW-gb-sHe" id="hga-Ml-jMB"/>
