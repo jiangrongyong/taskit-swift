@@ -7,47 +7,24 @@
 //
 
 import UIKit
+import CoreData
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    
+    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
     var baseArray: [[TaskModel]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let task1 = TaskModel(
-            task: "Study French",
-            subTask: "Verbs",
-            date: Date.from(year: 2014, month: 1, day: 14),
-            completed: false
-        )
-        
-        let task2 = TaskModel(
-            task: "Eat Dinner",
-            subTask: "Burgers",
-            date: Date.from(year: 2014, month: 1, day: 14),
-            completed: false
-        )
-        
-        let task3 = TaskModel(
-            task: "Gym",
-            subTask: "Leg day",
-            date: Date.from(year: 2014, month: 1, day: 14),
-            completed: false
-        )
-
-        let taskArray = [task1, task2, task3]
-        
-        var completedArray = [
-            TaskModel(task: "Code", subTask: "Task Project", date: Date.from(year: 2014, month: 1, day: 14), completed: true)
-        ]
-        
-        baseArray = [taskArray, completedArray]
-        
-        tableView.reloadData()
+        fetchedResultsController = getFetchedResultsController()
+        fetchedResultsController.delegate = self
+        fetchedResultsController.performFetch(nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -154,6 +131,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         baseArray[indexPath.section].removeAtIndex(indexPath.row)
    
         tableView.reloadData()
+    }
+    
+    // Helper
+    
+    func taskFetchRequest() -> NSFetchRequest {
+        let fetchRequest = NSFetchRequest(entityName: "TaskModel")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        return fetchRequest
+    }
+    
+    func getFetchedResultsController() -> NSFetchedResultsController {
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultsController
     }
 
 }
