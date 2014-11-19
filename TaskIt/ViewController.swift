@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
@@ -23,6 +25,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         fetchedResultsController = getFetchedResultsController()
         fetchedResultsController.delegate = self
         fetchedResultsController.performFetch(nil)
+        
+        Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
+            .responseJSON { (_, _, data, _) in
+                let json = JSON(data!)
+                println(json["url"].string)
+            }
     }
     
     override func viewDidAppear(animated: Bool) {
